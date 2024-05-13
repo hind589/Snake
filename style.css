@@ -1,0 +1,33 @@
+ body{
+
+
+ 
+  }
+
+
+
+  .zone {
+  display:flex;
+  flex-wrap: wrap;
+  position: absolute;
+    width:578px;
+    left: 35%;
+    top: 10%;
+
+
+    
+
+  background-color: rgb(252, 227, 38);
+  border: 1px solid black;
+
+    }
+    .snake {
+
+      width: 70px;
+      height:70px;
+
+    background-color:#FA6307;
+    border: 1px solid black;
+  
+      }
+  

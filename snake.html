@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="zone" id="zone">
+      <div class="snake" id="11"></div>
+      <div class="snake" id="12"></div>
+      <div class="snake" id="13"></div>
+      <div class="snake" id="14"></div>
+      <div class="snake" id="15"></div>
+      <div class="snake" id="16"></div>
+      <div class="snake" id="17"></div>
+      <div class="snake" id="18"></div>
+
+      <div class="snake" id="21"></div>
+      <div class="snake" id="22"></div>
+      <div class="snake" id="23"></div>
+      <div class="snake" id="24"></div>
+      <div class="snake" id="25"></div>
+      <div class="snake" id="26"></div>
+      <div class="snake" id="27"></div>
+      <div class="snake" id="28"></div>
+
+      <div class="snake" id="31"></div>
+      <div class="snake" id="32"></div>
+      <div class="snake" id="33"></div>
+      <div class="snake" id="34"></div>
+      <div class="snake" id="35"></div>
+      <div class="snake" id="36"></div>
+      <div class="snake" id="37"></div>
+      <div class="snake" id="38"></div>
+
+      <div class="snake" id="41"></div>
+      <div class="snake" id="42"></div>
+      <div class="snake" id="43"></div>
+      <div class="snake" id="44"></div>
+      <div class="snake" id="45"></div>
+      <div class="snake" id="46"></div>
+      <div class="snake" id="47"></div>
+      <div class="snake" id="48"></div>
+
+      <div class="snake" id="51"></div>
+      <div class="snake" id="52"></div>
+      <div class="snake" id="53"></div>
+      <div class="snake" id="54"></div>
+      <div class="snake" id="55"></div>
+      <div class="snake" id="56"></div>
+      <div class="snake" id="57"></div>
+      <div class="snake" id="58"></div>
+
+      <div class="snake" id="61"></div>
+      <div class="snake" id="62"></div>
+      <div class="snake" id="63"></div>
+      <div class="snake" id="64"></div>
+      <div class="snake" id="65"></div>
+      <div class="snake" id="66"></div>
+      <div class="snake" id="67"></div>
+      <div class="snake" id="68"></div>
+
+      <div class="snake" id="71"></div>
+      <div class="snake" id="72"></div>
+      <div class="snake" id="73"></div>
+      <div class="snake" id="74"></div>
+      <div class="snake" id="75"></div>
+      <div class="snake" id="76"></div>
+      <div class="snake" id="77"></div>
+      <div class="snake" id="78"></div>
+    </div>
+
+    <script>
+      document.addEventListener('keyup', function (event) {
+        if (event.keyCode === 37) {
+          console.log('left')
+          if (pos != 2) {
+            pos = 3
+          }
+        }
+        if (event.keyCode === 39) {
+          console.log('right')
+          if (pos != 3) {
+            pos = 2
+          }
+        }
+
+        if (event.keyCode === 38) {
+          console.log('top')
+
+          if (pos != 0) {
+            pos = 1
+          }
+        }
+
+        if (event.keyCode === 40) {
+          console.log('bottom')
+          if (pos != 1) {
+            pos = 0
+          }
+        }
+      })
+
+      var y = Math.floor(Math.random() * 7) + 1
+      var fruitx = Math.floor(Math.random() * 8) + 1
+      var fruity = Math.floor(Math.random() * 7) + 1
+
+      var divi = document.getElementById(y + '1')
+      var divihelp = document.getElementById(fruity + '' + fruitx)
+
+      divihelp.style.backgroundColor = 'red'
+
+      var offsetParentWidth = divi.offsetParent.offsetWidth
+      var leftPosition = (divi.offsetLeft / offsetParentWidth) * 100
+
+      var offsetParentHeight = divi.offsetParent.offsetHeight
+      var topPosition = (divi.offsetTop / offsetParentHeight) * 100
+      var arrayindex = []
+
+      var offsetParentWidth = divihelp.offsetParent.offsetWidth
+      var leftfruit = (divihelp.offsetLeft / offsetParentWidth) * 100
+
+      var offsetParentHeights = divihelp.offsetParent.offsetHeight
+      var topfruit = (divihelp.offsetTop / offsetParentHeights) * 100
+
+      //console.log(topPosition)
+
+      var numsquare = 0
+      var snakes = []
+      var snake = document.createElement('div')
+      snake.setAttribute('id', 's' + numsquare)
+      snake.style.backgroundColor = 'black'
+      snake.style.width = '72px'
+      snake.style.height = '71px'
+      snake.style.left = leftPosition + '%'
+      snake.style.top = topPosition + '%'
+      snake.style.position = 'absolute'
+
+      snakes.push(snake)
+
+      arrayindex.push([{ x: snakeleft, y: snaketop }])
+
+      document.getElementById('zone').appendChild(snake)
+
+      var snakeleft = 0
+
+      var snaketop = topPosition
+      var pos = 2
+      var interval = setInterval(() => {
+        if (pos == 2) {
+          snakeleft += 12.4
+        }
+        if (pos == 3) {
+          snakeleft -= 12.4
+        }
+
+        if (pos == 1) {
+          snaketop -= 14.2
+        }
+        if (pos == 0) {
+          snaketop += 14.2
+        }
+
+        if (snakeleft > 90) {
+          clearInterval(interval)
+        }
+        if (snakeleft < 0) {
+          clearInterval(interval)
+        }
+
+        if (snaketop > 99) {
+          clearInterval(interval)
+        }
+        if (snaketop < 0) {
+          clearInterval(interval)
+
+          for (var j = 0; j < arrayindex.length; j++) {
+            console.log(arrayindex[j])
+          }
+        }
+
+        //console.log(arrayindex)
+
+        //console.log(arrayindex[arrayindex.length-1])
+        //wil=arrayindex[arrayindex.length-1];
+        if (
+          Math.floor(snakeleft) == Math.floor(leftfruit) &&
+          Math.floor(snaketop) == Math.floor(topfruit)
+        ) {
+          // alert()
+          numsquare++
+          document.getElementById(fruity + '' + fruitx).style.backgroundColor =
+            '#FA6307'
+
+          var snake2 = document.createElement('div')
+          snake2.setAttribute('id', 's' + numsquare)
+          snake2.style.backgroundColor = 'black'
+          snake2.style.width = '72px'
+          snake2.style.height = '71px'
+          var small = arrayindex[0]
+          snake2.style.left = small[small.length - 1].x + '%'
+          snake2.style.top = small[small.length - 1].y + '%'
+          snake2.style.position = 'absolute'
+          snakes.push(snake2)
+          arrayindex.push([{ x: snakeleft, y: snaketop }])
+
+          document.getElementById('zone').appendChild(snake2)
+
+          fruitx = Math.floor(Math.random() * 8) + 1
+          fruity = Math.floor(Math.random() * 7) + 1
+
+          var divihelp = document.getElementById(fruity + '' + fruitx)
+          divihelp.style.backgroundColor = 'red'
+          offsetParentWidth = divihelp.offsetParent.offsetWidth
+          leftfruit = (divihelp.offsetLeft / offsetParentWidth) * 100
+          offsetParentHeights = divihelp.offsetParent.offsetHeight
+          topfruit = (divihelp.offsetTop / offsetParentHeights) * 100
+          /*
+  if(arrayindex.length>1){
+ for(var j=0;j<arrayindex.length;j++)
+ {
+ 
+   var small=arrayindex[j];
+if(small[small.length-1].x==leftfruit)
+{
+  alert()
+}
+console.log(small[small.length-1].x+" "+leftfruit)
+
+}
+}
+*/
+        }
+
+        snake.style.left = snakeleft + '%'
+        snake.style.top = snaketop + '%'
+
+        arrayindex[0].push({ x: snakeleft, y: snaketop })
+
+        console.log(arrayindex.length)
+
+        for (var j = 0; j < arrayindex.length; j++) {
+          if (j != 0) {
+            var small = arrayindex[j - 1]
+            arrayindex[j].push({
+              x: small[small.length - 2].x,
+              y: small[small.length - 2].y,
+            })
+
+            document.getElementById('s' + j).style.left =
+              small[small.length - 2].x + '%'
+            document.getElementById('s' + j).style.top =
+              small[small.length - 2].y + '%'
+          }
+        }
+      }, 1000)
+    </script>
+  </body>
+</html>
